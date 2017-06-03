@@ -1,3 +1,52 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+
+<h2>Currency rate</h2>
+
+<div class="currency-rate">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Currency</th>
+      <th>Rate</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let currencyRate of currencyRateData">
+      <td><img src="{{currencyRate.cc}}.png"></td>
+      <td>{{currencyRate.cc}}</td>
+      <td>{{currencyRate.rate}}</td>
+      <td>{{currencyRate.exchangedate}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<h2>Weather</h2>
+  <div class="weather">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Summary</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Wind speed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let weather of weatherData">
+      <td></td>
+      <td>{{weather.date}}</td>
+      <td>{{weather.summary}}</td>
+      <td>{{weather.temperatureMin}}</td>
+      <td>{{weather.temperatureMax}}</td>
+      <td>{{weather.windSpeed}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
