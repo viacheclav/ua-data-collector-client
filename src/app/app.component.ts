@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HeroService} from './hero.service';
 import {Weather} from "./weather";
 import {CurrencyRate} from "./currency-rate";
+import {CurrencyRateGeneral} from "./currency-rate-general";
 
 @Component({
   selector: 'my-app',
@@ -12,9 +13,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
+
+  currencyName: string = 'usd';
   weatherCurrent: string;
   weatherData: Weather[];
   currencyRateData: CurrencyRate[];
+  currencyRateDataGeneral: CurrencyRateGeneral[];
+
 
   constructor(private heroService: HeroService) {
   }
@@ -22,6 +27,21 @@ export class AppComponent implements OnInit {
   getData(): void {
     this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
     this.heroService.getWeather().then(data => this.showWeather(data));
+    this.heroService.getCurrencyRateGeneral('UAH').then(data => this.showCurrencyRateUAH(data))
+  }
+
+  showCurrencyRateUAH(data: any): void{
+    this.currencyRateDataGeneral = data.map(function(item){
+      return new CurrencyRateGeneral()
+        .setTitle(item.title)
+        .setCurrencyName(item.currency)
+        .setBuy(item.buy)
+        .setSell(item.sell);
+    });
+  }
+
+  switchCurrency(currencyName: string): void {
+    this.currencyName = currencyName;
   }
 
   showCurrencyRate(data: any): void {

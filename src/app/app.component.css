@@ -1,0 +1,5 @@
+/*table{ table-layout:fixed; width: 500px;}*/
+
+.currency-rate-uah table tr td, th{ border: solid 1px #bfc1b9; }
+.currency-rate-uah table td, th{ padding:0 10px; }
+

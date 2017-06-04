@@ -1,52 +1,63 @@
-<div class="container">
-
-<h2>Currency rate</h2>
-
-<div class="currency-rate">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th></th>
-      <th>Currency</th>
-      <th>Rate</th>
-      <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let currencyRate of currencyRateData">
-      <td><img src="{{currencyRate.cc}}.png"></td>
-      <td>{{currencyRate.cc}}</td>
-      <td>{{currencyRate.rate}}</td>
-      <td>{{currencyRate.exchangedate}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<div class="container-fluid">
 
 
-<h2>Weather</h2>
+  <div class="currency-rate">
+    НБУ
+    <span *ngFor="let currencyRate of currencyRateData">
+      <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.2-2'}}
+    </span>
+  </div>
+
+
+  <button type="button" class="btn btn-sm" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'" (click)="switchCurrency('usd')">USD</button>
+  <button type="button" class="btn btn-sm" [ngClass]="(currencyName === 'eur')?'btn-primary':'btn-default'" (click)="switchCurrency('eur')">EUR</button>
+
+  <div class="currency-rate-uah">
+    <table>
+      <thead>
+      <tr>
+        <th>Банк</th>
+        <th>Купівля</th>
+        <th>Продаж</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <ng-container *ngFor="let currencyRate of currencyRateDataGeneral">
+        <tr *ngIf="currencyRate.currencyName.toLowerCase() === currencyName">
+          <td>{{currencyRate.title}}</td>
+          <td>{{currencyRate.buy | number:'.2-2'}}</td>
+          <td>{{currencyRate.sell | number:'.2-2'}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h2>Погода</h2>
   <div class="weather">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Summary</th>
-      <th>Min</th>
-      <th>Max</th>
-      <th>Wind speed</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let weather of weatherData">
-      <td></td>
-      <td>{{weather.date}}</td>
-      <td>{{weather.summary}}</td>
-      <td>{{weather.temperatureMin}}</td>
-      <td>{{weather.temperatureMax}}</td>
-      <td>{{weather.windSpeed}}</td>
-    </tr>
-    </tbody>
-  </table>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Дата</th>
+        <th>Опис</th>
+        <th>Мінімальна</th>
+        <th>Максимальна</th>
+        <th>Швидкість вітру</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let weather of weatherData">
+        <td></td>
+        <td>{{weather.date}}</td>
+        <td>{{weather.summary}}</td>
+        <td>{{weather.temperatureMin}}</td>
+        <td>{{weather.temperatureMax}}</td>
+        <td>{{weather.windSpeed}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
