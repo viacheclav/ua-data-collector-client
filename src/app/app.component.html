@@ -1,63 +1,73 @@
 <div class="container-fluid">
 
+  <div class="row">
+    <div class="col-xs-6">
 
-  <div class="currency-rate">
-    НБУ
-    <span *ngFor="let currencyRate of currencyRateData">
-      <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.2-2'}}
-    </span>
-  </div>
+      <div class="row">
+        <div class="col-xs-3">
+        <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'"
+                (click)="switchCurrency('usd')">USD
+        </button>
+        <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'eur')?'btn-primary':'btn-default'"
+                (click)="switchCurrency('eur')">EUR
+        </button>
+        </div>
 
-
-  <button type="button" class="btn btn-sm" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'" (click)="switchCurrency('usd')">USD</button>
-  <button type="button" class="btn btn-sm" [ngClass]="(currencyName === 'eur')?'btn-primary':'btn-default'" (click)="switchCurrency('eur')">EUR</button>
-
-  <div class="currency-rate-uah">
-    <table>
-      <thead>
-      <tr>
-        <th>Банк</th>
-        <th>Купівля</th>
-        <th>Продаж</th>
-      </tr>
-      </thead>
-      <tbody>
-
-      <ng-container *ngFor="let currencyRate of currencyRateDataGeneral">
-        <tr *ngIf="currencyRate.currencyName.toLowerCase() === currencyName">
-          <td>{{currencyRate.title}}</td>
-          <td>{{currencyRate.buy | number:'.2-2'}}</td>
-          <td>{{currencyRate.sell | number:'.2-2'}}</td>
-        </tr>
-      </ng-container>
-      </tbody>
-    </table>
-  </div>
+        <div class="col-xs-8">
+      <div class="currency-rate">
+        НБУ
+        <span *ngFor="let currencyRate of currencyRateData">
+          <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.2-2'}}
+        </span>
+      </div>
+        </div>
+      </div>
 
 
-  <h2>Погода</h2>
-  <div class="weather">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th></th>
-        <th>Дата</th>
-        <th>Опис</th>
-        <th>Мінімальна</th>
-        <th>Максимальна</th>
-        <th>Швидкість вітру</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let weather of weatherData">
-        <td></td>
-        <td>{{weather.date}}</td>
-        <td>{{weather.summary}}</td>
-        <td>{{weather.temperatureMin}}</td>
-        <td>{{weather.temperatureMax}}</td>
-        <td>{{weather.windSpeed}}</td>
-      </tr>
-      </tbody>
-    </table>
+
+      <div class="currency-rate-uah">
+        <p-dataTable [value]="currencyRateDataGeneral" [ngStyle]="{'width':'400px'}">
+          <p-column field="title" header="Банк" [sortable]="true"></p-column>
+          <p-column field="buy" header="Купівля" [sortable]="true" [style]="{'width':'100px'}">
+            <ng-template let-col let-currency="rowData" pTemplate="body">
+              <span>{{currency[col.field] | number:'.2-2' }}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="sell" header="Продаж" [sortable]="true" [style]="{'width':'100px'}">
+            <ng-template let-col let-currency="rowData" pTemplate="body">
+              <span>{{currency[col.field] | number:'.2-2' }}</span>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <h2>Погода</h2>
+      <div class="weather">
+        <table>
+          <thead>
+          <tr>
+            <th></th>
+            <th>Дата</th>
+            <th>Опис</th>
+            <th>Мінімальна</th>
+            <th>Максимальна</th>
+            <th>Швидкість вітру</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let weather of weatherData">
+            <td></td>
+            <td>{{weather.date}}</td>
+            <td>{{weather.summary}}</td>
+            <td>{{weather.temperatureMin}}</td>
+            <td>{{weather.temperatureMax}}</td>
+            <td>{{weather.windSpeed}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

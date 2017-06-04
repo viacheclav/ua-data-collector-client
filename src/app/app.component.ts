@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   weatherData: Weather[];
   currencyRateData: CurrencyRate[];
   currencyRateDataGeneral: CurrencyRateGeneral[];
-
+  currencyRateDataGeneralAll: CurrencyRateGeneral[];
 
   constructor(private heroService: HeroService) {
   }
@@ -31,17 +31,27 @@ export class AppComponent implements OnInit {
   }
 
   showCurrencyRateUAH(data: any): void{
-    this.currencyRateDataGeneral = data.map(function(item){
+    this.currencyRateDataGeneralAll = data.map(function(item){
       return new CurrencyRateGeneral()
         .setTitle(item.title)
         .setCurrencyName(item.currency)
         .setBuy(item.buy)
         .setSell(item.sell);
     });
+
+    this.updateCurrencyDisplayData();
+  }
+
+  updateCurrencyDisplayData() : void {
+    let self = this;
+    this.currencyRateDataGeneral = this.currencyRateDataGeneralAll.filter(function (el) {
+      return el.currencyName == self.currencyName;
+    });
   }
 
   switchCurrency(currencyName: string): void {
     this.currencyName = currencyName;
+    this.updateCurrencyDisplayData();
   }
 
   showCurrencyRate(data: any): void {
