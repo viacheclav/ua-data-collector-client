@@ -20,6 +20,10 @@ export class HeroService {
     return this.getData('api/weather');
   }
 
+  getWeatherDefault(): Promise<string> {
+    return this.getData('api/weather-default');
+  }
+
   private getData(url: string): Promise<string> {
     return this.http.get(url).toPromise().then(response => response.json() as string).catch(this.handleError);
   }

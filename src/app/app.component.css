@@ -1,5 +1,5 @@
 :host /deep/ .ui-datatable{
-  width: 400px;
+  width: 350px;
 }
 
 :host /deep/ .ui-datatable td, tr{
@@ -14,4 +14,13 @@
 
 .container-fluid {
   padding: 10px;
+}
+
+
+.weather-table tr td{
+  padding: 0 10px;
+}
+
+.weather-table tr {
+  border: solid 1px #c1c1c1;
 }

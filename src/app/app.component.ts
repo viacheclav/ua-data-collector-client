@@ -14,8 +14,8 @@ export class AppComponent implements OnInit {
     this.getData();
   }
 
+  weatherDataDefault: any;
   currencyName: string = 'usd';
-  weatherCurrent: string;
   weatherData: Weather[];
   currencyRateData: CurrencyRate[];
   currencyRateDataGeneral: CurrencyRateGeneral[];
@@ -25,8 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   getData(): void {
-    this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
     this.heroService.getWeather().then(data => this.showWeather(data));
+    this.heroService.getWeatherDefault().then(data => this.showWeatherDefault(data));
+    this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
     this.heroService.getCurrencyRateGeneral('UAH').then(data => this.showCurrencyRateUAH(data))
   }
 
@@ -81,8 +82,10 @@ export class AppComponent implements OnInit {
         .setTemperatureMax(item.temperatureMax)
         .setWindSpeed(item.windSpeed);
     });
+  }
 
-    this.weatherCurrent = JSON.stringify(currentWeather);
+  showWeatherDefault(data: any): void {
+    this.weatherDataDefault = data;
   }
 
   timeConverter(UNIX_timestamp: number): string {
