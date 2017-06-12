@@ -13,7 +13,7 @@
 }
 
 .container-fluid {
-  padding: 10px;
+  /*padding: 10px;*/
 }
 
 
@@ -23,4 +23,12 @@
 
 .weather-table tr {
   border: solid 1px #c1c1c1;
+}
+
+.table-default tr td{
+  padding: 0 10px;
+}
+
+.no-border {
+  border: none;
 }

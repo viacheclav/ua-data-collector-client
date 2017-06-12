@@ -48,10 +48,10 @@
       <h2>Погода</h2>
       <div class="weather-default">
         <div *ngFor="let weatherDefault of weatherDataDefault">
-          <table class="weather-table">
+          <table class="table-default no-border">
             <tbody>
             <tr>
-              <td><b>{{weatherDefault.dayName}}, {{weatherDefault.data}}</b></td>
+              <td style="font: bold 16px arial, sans-serif; color: #205d86">{{weatherDefault.dayName}}, {{weatherDefault.data}}</td>
               <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.min}}</td>
               <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.max}}</td>
             </tr>
