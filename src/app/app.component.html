@@ -9,7 +9,16 @@
       <button type="button" class="btn btn-sm" [ngClass]="(city === 'krakow')?'btn-primary':'btn-default'"
               (click)="getData('krakow')">Krakow
       </button>
-      <label class="checkbox-inline" style="margin-left: 30px">
+    </div>
+
+  </div>
+
+  <div class="row" style="margin: 15px 0px;">
+    <div class="col-xs-12 col-sm-4 col-lg-4">
+    </div>
+    <div class="col-xs-12 col-sm-8 col-lg-8">
+
+      <label class="checkbox-inline">
         <input type="checkbox" id="inlineCheckbox1" [checked]="showCurrency" (change)="showOrHideCurrency(!showCurrency)"> currency
       </label>
       <label class="checkbox-inline">
