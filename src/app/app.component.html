@@ -16,7 +16,7 @@
 
         <div class="col-xs-8">
           <div class="currency-rate">
-            НБУ
+            NBU
             <span *ngFor="let currencyRate of currencyRateData">
               <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.2-2'}}
             </span>
@@ -27,13 +27,13 @@
 
       <div class="currency-rate-uah">
         <p-dataTable [value]="currencyRateDataGeneral" >
-          <p-column field="title" header="Банк" [sortable]="true" [style]="{'width':'150px'}"></p-column>
-          <p-column field="buy" header="Купівля" [sortable]="true" [style]="{'width':'100px'}">
+          <p-column field="title" header="Bank" [sortable]="true" [style]="{'width':'150px'}"></p-column>
+          <p-column field="buy" header="Buy" [sortable]="true" [style]="{'width':'100px'}">
             <ng-template let-col let-currency="rowData" pTemplate="body">
               <span>{{currency[col.field] | number:'.2-2' }}</span>
             </ng-template>
           </p-column>
-          <p-column field="sell" header="Продаж" [sortable]="true" [style]="{'width':'100px'}">
+          <p-column field="sell" header="Sell" [sortable]="true" [style]="{'width':'100px'}">
             <ng-template let-col let-currency="rowData" pTemplate="body">
               <span>{{currency[col.field] | number:'.2-2' }}</span>
             </ng-template>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-5 col-lg-4">
-      <h2>Погода</h2>
+      <h2>Weather</h2>
       <div class="weather-default">
         <div *ngFor="let weatherDefault of weatherDataDefault">
           <table class="table-default no-border">
