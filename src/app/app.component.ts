@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {HeroService} from './hero.service';
-import {Weather} from "./weather";
 import {CurrencyRate} from "./currency-rate";
 import {CurrencyRateGeneral} from "./currency-rate-general";
 
@@ -11,7 +10,7 @@ import {CurrencyRateGeneral} from "./currency-rate-general";
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    this.getData();
+    this.getData('kyiv');
   }
 
   weatherDataDefault: any;
@@ -20,15 +19,21 @@ export class AppComponent implements OnInit {
   currencyRateData: CurrencyRate[];
   currencyRateDataGeneral: CurrencyRateGeneral[];
   currencyRateDataGeneralAll: CurrencyRateGeneral[];
+  city: string;
 
   constructor(private heroService: HeroService) {
   }
 
-  getData(): void {
-    this.heroService.getWeatherDefault('dvfhgk').then(data => this.showWeatherDefault(data));
-    this.heroService.getWeatherDefault('khggty').then(data => this.weatherDataDefault2 = data);
+  getData(city: string): void {
+    if (this.city == city) {
+      return;
+    }
+    this.city = city;
+    this.heroService.getWeatherDefault(city, 'dvfhgk').then(data => this.showWeatherDefault(data));
+    this.heroService.getWeatherDefault(city, 'khggty').then(data => this.weatherDataDefault2 = data);
     this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
-    this.heroService.getCurrencyRateGeneral('UAH').then(data => this.showCurrencyRateUAH(data))
+    let currency: string = city === 'krakow' ? 'PLN' :'UAH';
+    this.heroService.getCurrencyRateGeneral(currency).then(data => this.showCurrencyRateUAH(data))
   }
 
   showCurrencyRateUAH(data: any): void{
