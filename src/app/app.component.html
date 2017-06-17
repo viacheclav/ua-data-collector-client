@@ -4,45 +4,46 @@
     <div class="col-xs-12 col-sm-7 col-lg-4">
 
       <div class="currency-general">
-      <div class="row">
-        <div class="col-xs-3">
-          <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'"
-                  (click)="switchCurrency('usd')">USD
-          </button>
-          <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'eur')?'btn-primary':'btn-default'"
-                  (click)="switchCurrency('eur')">EUR
-          </button>
-        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'"
+                    (click)="switchCurrency('usd')">USD
+            </button>
+            <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'eur')?'btn-primary':'btn-default'"
+                    (click)="switchCurrency('eur')">EUR
+            </button>
+          </div>
 
-        <div class="col-xs-8">
-          <div class="currency-rate">
-            NBU
-            <span *ngFor="let currencyRate of currencyRateData">
+          <div class="col-xs-8">
+            <div class="currency-rate">
+              NBU
+              <span *ngFor="let currencyRate of currencyRateData">
               <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.2-2'}}
             </span>
+            </div>
           </div>
         </div>
-      </div>
 
-
-      <div class="currency-rate-uah">
-        <p-dataTable [value]="currencyRateDataGeneral" >
-          <p-column field="title" header="Bank" [sortable]="true" [style]="{'width':'150px'}"></p-column>
-          <p-column field="buy" header="Buy" [sortable]="true" [style]="{'width':'100px'}">
-            <ng-template let-col let-currency="rowData" pTemplate="body">
-              <span>{{currency[col.field] | number:'.2-2' }}</span>
-            </ng-template>
-          </p-column>
-          <p-column field="sell" header="Sell" [sortable]="true" [style]="{'width':'100px'}">
-            <ng-template let-col let-currency="rowData" pTemplate="body">
-              <span>{{currency[col.field] | number:'.2-2' }}</span>
-            </ng-template>
-          </p-column>
-        </p-dataTable>
-      </div>
+        <div class="currency-rate-uah">
+          <p-dataTable [value]="currencyRateDataGeneral">
+            <p-column field="title" header="Bank" [sortable]="true" [style]="{'width':'150px'}"></p-column>
+            <p-column field="buy" header="Buy" [sortable]="true" [style]="{'width':'100px'}">
+              <ng-template let-col let-currency="rowData" pTemplate="body">
+                <span>{{currency[col.field] | number:'.2-2' }}</span>
+              </ng-template>
+            </p-column>
+            <p-column field="sell" header="Sell" [sortable]="true" [style]="{'width':'100px'}">
+              <ng-template let-col let-currency="rowData" pTemplate="body">
+                <span>{{currency[col.field] | number:'.2-2' }}</span>
+              </ng-template>
+            </p-column>
+          </p-dataTable>
+        </div>
 
       </div>
     </div>
+
+    <!-- Weather 1 -->
 
     <div class="col-xs-12 col-sm-5 col-lg-4">
       <h2>Weather</h2>
@@ -51,7 +52,9 @@
           <table class="table-default no-border">
             <tbody>
             <tr>
-              <td style="font: bold 16px arial, sans-serif; color: #205d86">{{weatherDefault.dayName}}, {{weatherDefault.data}}</td>
+              <td style="font: bold 16px arial, sans-serif; color: #205d86">{{weatherDefault.dayName}},
+                {{weatherDefault.date}}
+              </td>
               <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.min}}</td>
               <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.max}}</td>
             </tr>
@@ -71,7 +74,43 @@
           <br/>
         </div>
       </div>
-
     </div>
+
+    <!-- Weather 2 -->
+    <div class="col-xs-12 col-sm-5 col-lg-4">
+      <h2>Weather</h2>
+      <div class="weather-default">
+        <div *ngFor="let weatherDefault of weatherDataDefault2">
+          <table class="table-default no-border">
+            <tbody>
+            <tr>
+              <td style="font: bold 16px arial, sans-serif; color: #205d86">{{weatherDefault.dayName}},
+                {{weatherDefault.date}}
+              </td>
+              <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.min}}</td>
+              <td style="font: bold 20px arial, sans-serif; color: #333333">{{weatherDefault.max}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table class="weather-table">
+            <tbody>
+            <tr *ngFor="let weatherItem of weatherDefault.weathers">
+              <td style="font: bold 15px arial, sans-serif; color: #313d40">{{weatherItem.time}}</td>
+              <td width="50px" style="font: 12px arial, sans-serif; color: #3e5d7d">{{weatherItem.exactTime}}</td>
+              <td><img src="{{weatherItem.image}}" width="40px" height="40px"></td>
+              <td width="150px" style="font: 12px arial, sans-serif; color: #3e5d7d">{{weatherItem.title}}</td>
+              <td style="font: bold 17px arial, sans-serif; color: #313d40">{{weatherItem.temperature}}</td>
+              <td width="50px" style="font: 12px arial, sans-serif; color: #3e5d7d">{{weatherItem.probability}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <br/>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
 </div>

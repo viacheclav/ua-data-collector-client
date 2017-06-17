@@ -20,8 +20,8 @@ export class HeroService {
     return this.getData('api/weather');
   }
 
-  getWeatherDefault(): Promise<string> {
-    return this.getData('api/weather-default');
+  getWeatherDefault(providerCode: string): Promise<string> {
+    return this.getData('api/weather-default/' + providerCode);
   }
 
   private getData(url: string): Promise<string> {

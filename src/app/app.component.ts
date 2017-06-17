@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   }
 
   weatherDataDefault: any;
+  weatherDataDefault2: any;
   currencyName: string = 'usd';
   weatherData: Weather[];
   currencyRateData: CurrencyRate[];
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
 
   getData(): void {
     this.heroService.getWeather().then(data => this.showWeather(data));
-    this.heroService.getWeatherDefault().then(data => this.showWeatherDefault(data));
+    this.heroService.getWeatherDefault('dvfhgk').then(data => this.showWeatherDefault(data));
+    this.heroService.getWeatherDefault('khggty').then(data => this.weatherDataDefault2 = data);
     this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
     this.heroService.getCurrencyRateGeneral('UAH').then(data => this.showCurrencyRateUAH(data))
   }
