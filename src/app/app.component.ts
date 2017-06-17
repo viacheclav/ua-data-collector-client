@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   weatherDataDefault: any;
   weatherDataDefault2: any;
   currencyName: string = 'usd';
-  weatherData: Weather[];
   currencyRateData: CurrencyRate[];
   currencyRateDataGeneral: CurrencyRateGeneral[];
   currencyRateDataGeneralAll: CurrencyRateGeneral[];
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
   }
 
   getData(): void {
-    this.heroService.getWeather().then(data => this.showWeather(data));
     this.heroService.getWeatherDefault('dvfhgk').then(data => this.showWeatherDefault(data));
     this.heroService.getWeatherDefault('khggty').then(data => this.weatherDataDefault2 = data);
     this.heroService.getCurrencyRate().then(data => this.showCurrencyRate(data));
@@ -69,37 +67,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  showWeather(data: any): void {
-    let currentWeather = data.currently;
-    let daily = data.daily.data;
-    let self = this;
-    this.weatherData = daily.map(function (item) {
-      let date = self.timeConverter(item.time);
-      return new Weather()
-        .setDate(date)
-        .setIcon(item.icon)
-        .setSummary(item.summary)
-        .setPrecipProbability(item.precipProbability)
-        .setTemperatureMin(item.temperatureMin)
-        .setTemperatureMax(item.temperatureMax)
-        .setWindSpeed(item.windSpeed);
-    });
-  }
-
   showWeatherDefault(data: any): void {
     this.weatherDataDefault = data;
   }
-
-  timeConverter(UNIX_timestamp: number): string {
-    let a = new Date(UNIX_timestamp * 1000);
-    let months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-    let year = a.getFullYear();
-    let month = months[a.getMonth()];
-    let date = a.getDate();
-    let hour = a.getHours();
-    let min = a.getMinutes();
-    let sec = a.getSeconds();
-    return date + '.' + month + '.' + year;
-  }
-
 }

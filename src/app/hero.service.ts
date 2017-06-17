@@ -16,10 +16,6 @@ export class HeroService {
     return this.getData('api/currency-rate-general/' + currency);
   }
 
-  getWeather(): Promise<string> {
-    return this.getData('api/weather');
-  }
-
   getWeatherDefault(providerCode: string): Promise<string> {
     return this.getData('api/weather-default/' + providerCode);
   }
