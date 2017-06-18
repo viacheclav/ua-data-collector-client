@@ -18,15 +18,17 @@
     </div>
     <div class="col-xs-12 col-sm-8 col-lg-8">
 
-      <label class="checkbox-inline">
-        <input type="checkbox" id="inlineCheckbox1" [checked]="showCurrency" (change)="showOrHideCurrency(!showCurrency)"> currency
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="inlineCheckbox2" [checked]="showWeather1" (change)="showOrHideWeather1(!showWeather1)" > gismeteo
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="inlineCheckbox3" [checked]="showWeather2" (change)="showOrHideWeather2(!showWeather2)"> sinoptik
-      </label>
+      <button type="button" class="btn btn-xs" [ngClass]="showCurrency?'btn-success':'btn-warning'" (click)="showOrHideCurrency(!showCurrency)">
+        <span class="glyphicon" [ngClass]="showCurrency?'glyphicon-ok':'glyphicon-remove'" aria-hidden="true"></span> currency
+      </button>
+
+      <button type="button" class="btn btn-xs" [ngClass]="showWeather1?'btn-success':'btn-warning'" (click)="showOrHideWeather1(!showWeather1)">
+        <span class="glyphicon" [ngClass]="showWeather1?'glyphicon-ok':'glyphicon-remove'" aria-hidden="true"></span> gismeteo
+      </button>
+
+      <button type="button" class="btn btn-xs" [ngClass]="showWeather2?'btn-success':'btn-warning'" (click)="showOrHideWeather2(!showWeather2)">
+        <span class="glyphicon" [ngClass]="showWeather2?'glyphicon-ok':'glyphicon-remove'" aria-hidden="true"></span> sinoptik
+      </button>
 
     </div>
 
