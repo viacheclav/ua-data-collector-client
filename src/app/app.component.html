@@ -40,7 +40,7 @@
 
       <div class="currency-general">
         <div class="row">
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <button type="button" class="btn btn-xs" [ngClass]="(currencyName === 'usd')?'btn-primary':'btn-default'"
                     (click)="switchCurrency('usd')">USD
             </button>
@@ -49,11 +49,10 @@
             </button>
           </div>
 
-          <div class="col-xs-8" *ngIf="city === 'kyiv'">
+          <div class="col-xs-12 col-sm-9" *ngIf="city === 'kyiv'">
             <div class="currency-rate">
-              NBU
               <span *ngFor="let currencyRate of currencyRateData">
-              <b>{{currencyRate.cc}}  </b> {{currencyRate.rate | number:'.4-4'}}
+                {{currencyRate.cc}}   <span style="font: bold 16px arial, sans-serif; color: #000000">{{currencyRate.rate | number:'.4-4'}}</span>
             </span>
             </div>
           </div>
